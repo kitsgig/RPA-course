@@ -1,0 +1,21 @@
+[paths]
+exchange = "Обмен"
+references = "Обмен/Справочники каталога.xlsx"
+state = ".runtime/state.sqlite3"
+
+[robot]
+threshold = 0.7
+interval_minutes = 15
+
+[gigachat]
+scope = "GIGACHAT_API_PERS"
+model = "GigaChat-2-Pro"
+base_url = "https://api.giga.chat/v1"
+verify_ssl_certs = true
+ca_bundle_file = "certs/russian_trusted_root_ca_pem.crt"
+
+[mail]
+host = ""
+port = 465
+sender = ""
+recipient = ""
