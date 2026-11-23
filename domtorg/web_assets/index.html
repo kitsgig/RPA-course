@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ДомТорг – проверка робота</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar shell">
+    <a class="brand" href="/"><span class="brand-mark" aria-hidden="true">Д</span>ДомТорг</a>
+    <span class="muted">Локальная панель</span>
+  </header>
+  <main class="shell">
+    <section aria-labelledby="title">
+      <div class="page-heading">
+        <div>
+          <h1 id="title">Проверка робота</h1>
+          <p class="muted" id="references">Проверяем справочники…</p>
+        </div>
+        <div class="page-actions">
+          <button class="button" id="refresh" type="button">Обновить</button>
+          <button class="button primary" id="run" type="button" disabled>Запустить цикл</button>
+        </div>
+      </div>
+      <div class="run-info">
+        <p id="run-status" role="status">Подключение к роботу…</p>
+        <details id="run-output" hidden>
+          <summary>Результат последнего цикла</summary>
+          <pre id="output"></pre>
+        </details>
+      </div>
+    </section>
+
+    <!-- panel-help -->
+
+    <section class="upload" aria-labelledby="upload-title">
+      <div class="section-heading">
+        <h2 id="upload-title">Добавить файл</h2>
+        <p class="muted" id="upload-hint">Загрузите файл и запустите цикл.</p>
+      </div>
+      <form id="upload-form">
+        <label>Тип файла
+          <select id="kind">
+            <option value="supplier">Файл поставщика</option>
+            <option value="review">Проверенный отчёт</option>
+          </select>
+        </label>
+        <label id="supplier-field">Поставщик
+          <select id="supplier"></select>
+        </label>
+        <label class="file-field">Файл
+          <input type="file" id="file" required>
+        </label>
+        <button class="button" id="send" type="submit" disabled>Добавить в очередь</button>
+      </form>
+      <p id="feedback" role="status" hidden></p>
+      <details id="queue-details">
+        <summary id="queue-label">В очереди 0 файлов</summary>
+        <ul id="queue"></ul>
+      </details>
+    </section>
+
+    <section aria-label="Результаты обработки">
+      <nav class="status-tabs" aria-label="Вкладки">
+        <button type="button" id="files-tab" aria-pressed="true" aria-controls="files-panel">Файлы <span id="file-count"></span></button>
+        <button type="button" id="journal-tab" aria-pressed="false" aria-controls="journal-panel">Журнал</button>
+      </nav>
+      <div id="files-panel">
+        <div class="table-wrap">
+          <table class="file-table" role="table" aria-label="Обработанные файлы">
+            <thead>
+              <tr><th>Файл и поставщик</th><th>Статус</th><th>Позиции</th><th>Документы</th></tr>
+            </thead>
+            <tbody id="files" role="rowgroup"></tbody>
+          </table>
+        </div>
+        <p class="empty" id="files-empty" hidden>Здесь появятся результаты после первого цикла.</p>
+      </div>
+      <div id="journal-panel" hidden>
+        <div class="table-wrap">
+          <table aria-label="Последние события">
+            <thead>
+              <tr><th>Время (Иркутск)</th><th>Этап</th><th>Статус</th><th>Код</th></tr>
+            </thead>
+            <tbody id="journal"></tbody>
+          </table>
+        </div>
+        <p class="empty" id="journal-empty" hidden>Событий пока нет.</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
